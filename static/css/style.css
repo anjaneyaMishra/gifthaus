@@ -1,0 +1,48 @@
+/* body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(48, 100, 146);
+} */
+.carousel-item{
+    min-height: 450px;
+    max-height: 600px;
+}
+
+.ind{
+    font-family: cursive;
+}
+.about{
+    font-size:x-large;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    text-align:justify;
+}
+.nav-item{
+    font-family: cursive;
+}
+.bg{
+    background-color: rgba(182, 163, 163, 0.912);
+}
+
+.search{
+    justify-content: center;
+}
+/* Example Navbar Styling */
+.navbar {
+    background-color: #ff5733;
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    font-size: 18px;
+    font-family: cursive;
+}
+
+.navbar-toggler-icon {
+    background-color: white;
+}
+

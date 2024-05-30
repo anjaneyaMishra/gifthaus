@@ -1,0 +1,28 @@
+<button class="btn btn-danger rounded-2 border border-radius-5 d-block d-md-none" onclick="toggle()">
+   
+    <i class="fa-solid fa-ellipsis"></i>
+</button>
+<div id="bar" class="h-100 py-3 d-none d-md-block">
+    <div class="row">
+        <div class="col-m">
+            <strong class="p-2"> 
+            <a href="{% url 'all_products' %}" class="text-decoration-underline text-danger fst-italic fw-bold fs-5 ">All Products</a>
+            </strong>
+            {% for c in categories   %}
+            <strong class="p-2">
+            <a href="{% url 'product_category' c.id %}" class="text-decoration-underline text-danger fst-italic fw-bold fs-5 ">{{c.category}}</a>
+            </strong>
+             {% endfor %}
+       
+        </div>
+    </div>
+
+</div>
+{% block extrajs %}
+<script>
+    function toggle(){
+        document.getElementById("bar").classList.toggle("d-none")
+    }
+</script>
+{% endblock extrajs %}
+   

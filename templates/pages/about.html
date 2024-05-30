@@ -1,0 +1,88 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %}
+    ||About US
+{% endblock  %}
+
+{% block content  %}
+<style>
+     body {
+        background: url("{% static 'image/signup.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    } 
+</style>
+<div class="container ">
+    <div class="row display-5 about fst-normal text-black">
+        <p class=" display-5 about fst-italic text-white">GiftHaus is an eCommerce website designed to attract the youth to enjoy their life through high quality products and services.We aim to provide high quality items,cosmetics,bags,toy and so many exciting products in affordable prices.People usually miss the best gifts and items because they are unaware and are unable find the best gifts in nearby stores or from other websites, but Gifthaus has everything  to find out or fill your buckets with.</p>
+
+
+        <h2 class="text-white fw-bold text-decoration-underline">Our Story</h2>
+
+    <p  class="text-white">GiftHaus was born out of a shared passion for meaningful gifting and the desire to make gift shopping an enjoyable and memorable experience. With years of experience in the gift industry, our team set out to create an online platform that offers a wide range of handpicked gifts, ensuring that you find the perfect present for every occasion.</p>
+    <h2 class="text-white fw-bold text-decoration-underline">Our Collection</h2>
+
+    <p class="text-white">Our vast collection features an exquisite array of gifts suitable for every celebration, be it birthdays, anniversaries, weddings, holidays, or simply expressing gratitude to someone special. From personalized keepsakes and heartwarming photo frames to luxurious gift hampers and trendy lifestyle products, we have something for everyone and every budget.</p>
+    <h2 class="text-white fw-bold text-decoration-underline">Quality and Thoughtfulness</h2>
+    <p  class="text-white">At GiftHaus, we understand the importance of giving with love. That's why we meticulously curate each item in our collection to ensure it meets our highest standards of quality, craftsmanship, and uniqueness. We believe that thoughtful gifting should come from the heart, and our gifts are carefully chosen to evoke smiles, tears of joy, and heartfelt emotions.</p>
+    <h2 class="text-white fw-bold text-decoration-underline">Personalization</h2>
+    <p  class="text-white">What sets us apart is our dedication to creating truly one-of-a-kind gifts. Many of our products can be personalized with names, dates, or heartfelt messages, adding a personal touch that makes your gift even more special and memorable. Our team takes pride in offering a wide range of customization options to cater to your unique preferences and make every gift a cherished keepsake.</p>
+    <h2 class="text-white fw-bold text-decoration-underline">Exceptional Customer Service</h2>
+    <p  class="text-white">At GiftHaus, we strive to create not just a shopping experience but a lasting relationship with our customers. Our friendly and dedicated customer support team is always here to assist you at every step of your gifting journey. Whether you need gift recommendations, help with personalization, or any other assistance, we are just a click or call away.</p>
+    <h2 class="text-white fw-bold text-decoration-underline">Fast and Reliable Delivery</h2>
+    <p  class="text-white">We know that timing is crucial when it comes to gift-giving, and that's why we ensure fast and reliable delivery to your doorstep. From express shipping options for last-minute surprises to carefully packaged gifts for a seamless unboxing experience, we go the extra mile to make your gifting journey smooth and stress-free.</p>
+    <h2 class="text-white fw-bold text-decoration-underline">Join the GiftHaus Family</h2>
+    <p  class="text-white">GiftHaus is more than just an online gift shop; it's a community of givers and receivers who value the joy of giving and the beauty of thoughtful gestures. We invite you to explore our world of gifting and become part of the GiftHaus family, where we celebrate love, laughter, and connections.</p>
+    <p  class="text-white">Thank you for choosing GiftHaus. Your journey to finding the perfect gift begins here!</p>
+        <center><h1 class="fw-bold fst-italic text-white">Spread Love. Share Joy. Gift with Heart.</h1></center>
+    <h3 class="fw-bold fst-italic text-white">The GiftHaus Team</h3>
+
+
+    </div>
+    <div class="row">
+        <h1 class="fst-italic text-center text-decoration-underline text-white">DO VISIT OUR OFFLINE STORES</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4 my-5 ">
+            <div class="card border" style="width: 18rem;">
+                <img src="{% static 'image/loc-1.jpg' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><strong>ADDRESS</strong><br>Rasulgarh Industrial Estate, Industrial Area Estate, Rasulgarh, Bhubaneswar, Odisha 751007</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 my-5">
+            <div class="card border" style="width: 18rem;height:5 rem;">
+                <img src="{% static 'image/loc-2.jpeg' %}" class="card-img-top img-fluid" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><strong>ADDRESS</strong><br>First floor-14, Oberoi Mall, Western Express Hwy, Goregaon, Mumbai, Maharashtra 400063</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 my-5">
+            <div class="card border" style="width: 18rem;">
+                <img src="{% static 'image/loc-3.jpeg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><strong>ADDRESS</strong><br>G 13,Growels Mall, Akurli Road, Off, Western Express Hwy, Kandivali East, Mumbai, Maharashtra 400101</p>
+                </div>
+            </div>
+        </div>
+        <div class="row my-2">
+            <img src="{% static 'image/pic-5.jpg.' %}" class="card-img-top" alt="...">
+            <h1 class="fst-italic text-center fw-bold text-white ">GET YOUR FRANCHISE RIGHT NOW</h1>
+           
+        </div>
+       
+       
+
+
+    </div>
+    
+    
+</div>
+
+
+    
+
+
+ {% endblock content %}
+

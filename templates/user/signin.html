@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+||Sign in
+{% endblock title %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{% static 'image/signup.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
+<div class="container py-5 ">
+    <div class="row">
+        <div class="col-md-6 mx-auto ">
+            <div class="card">
+                <div class="card-header bg-danger">
+                    <h3 class="text-white">SIGN IN</h3>
+                </div>
+                <div class="card-body">
+                    {% for message in messages  %}
+                    <p class={{message.tags}}>{{message}}</p>
+                    
+                    {% endfor %}
+                    <form action="{% url 'signin' %}" method="POST" >
+                        {% csrf_token %}
+                        <div class="mb-1">
+                            <label for="">Username</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+                        <div class="mb-1">
+                            <label for="">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="mb-1">
+                            
+                            <input type="submit" value="Sign In" class="btn btn-danger w-100" >
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,90 @@
+
+{% extends 'base.html' %}
+{% comment %} {% block title %}
+||User Profile
+{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6 mx-auto my-5">
+            <div class="card border border-3 border-danger">
+                <div class="card-body">
+                    <p><strong class="text-danger">Name: </strong>{{user.first_name}} {{user.last_name}}</p>
+                    <p><strong class="text-danger">UserName: </strong>{{user.username}}</p>
+                    <p><strong class="text-danger">Email: </strong>{{user.email}}</p>
+                    <p><strong class="text-danger">Password: </strong> ***<a href="">change password</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %} {% endcomment %}
+{% block title %}
+|| User Profile
+{% endblock title %}
+
+{% block content %}
+<style>
+    .container {
+        margin-top: 50px;
+    }
+
+    .card {
+        border: 2px solid #dc3545; 
+        border-radius: 10px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        color: #dc3545; 
+    }
+
+    .card-text {
+        font-size: 18px;
+    }
+
+    .change-password-link {
+        color: #dc3545; 
+        text-decoration: none;
+        font-weight: bold;
+        margin-left: 10px;
+        display: flex; 
+        align-items: center; 
+    }
+    .change-password-link i {
+        margin-right: 5px; 
+        font-size: 18px; 
+    }
+
+    .change-password-link:hover {
+        text-decoration: underline; 
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-danger text-center fw-bolder text-decoration-underline ">USER PROFILE</h2>
+                    <p class="card-text "><strong class="text-decoration-underline"><i class="fa-solid fa-user fa-2xl text-danger"></i></strong> {{ user.first_name }} {{ user.last_name }}</p><br>
+                    <p class="card-text"><strong  class="text-decoration-underline text-danger"><i class="fa-solid fa-file-signature fa-2xl"></i></strong> {{ user.username }}</p><br>
+                    <p class="card-text"><strong class="text-decoration-underline text-danger"><i class="fa-solid fa-at fa-2xl"></i></strong> {{ user.email }}</p><br>
+                    <p class="card-text">
+                        <a href="# " class="change-password-link">
+                            <i class="fa-solid fa-lock "></i> Change Password
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,109 @@
+
+{% extends 'base.html' %}
+{% comment %} 
+{% load static %}
+{% block content %}
+<div class="container ">
+    <h2 class="text-center fst-italic text-dark">SEARCH RESULTS FOR "{{ query }}"</h2>
+    <div class="row mt-5 search">
+        {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card border border-5 border-danger">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger fw-bold fst-italic">{{ product.name }}</h5>
+                        <img src="{{product.image.url}}" class="card-img-top" alt="no-img" style="height: 250px;">
+                        <p class="card-text text-danger fw-bold fst-italic">{{ product.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-center fw-semibold">No products found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %} {% endcomment %}
+
+{% load static %}
+{% block content %}
+<style>
+    /* Container styles */
+    .container {
+        padding: 20px;
+    }
+
+    /* Header styles */
+    .search-header {
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 20px;
+        color: #ff5733;
+    }
+
+    /* Search result cards */
+    .search-card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .search-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ff5733;
+    }
+
+    .card-img-top {
+        object-fit: cover;
+        max-height: 250px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* No products found message */
+    .no-products-message {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #555;
+        margin-top: 20px;
+    }
+</style>
+<div class="container">
+    <h2 class="search-header">SEARCH RESULTS FOR "{{ query }}"</h2>
+    <div class="row mt-5">
+        {% for product in products %}
+            {% comment %} <div class="col-md-4 mb-4">
+                <div class="card search-card">
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p><strong><h2> Price:{{product.price}}</h2></strong></p>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+            <div class="row">
+                <div class="col-md-6 p-2 pt-3">
+                    <img src="{{product.image.url}} " class="w-75 h-100">
+                </div>
+                <div class="col-md-6 text-white">
+                    <h4 class="display-4 text-danger">{{product.name}}</h4>
+                    <p><strong><h2> Price:{{product.price}}</h2></strong></p>
+                    <p class="lead" style="text-align: justify">{{product.description}}</p>
+        
+        {% empty %}
+            <p class="no-products-message">No products found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+

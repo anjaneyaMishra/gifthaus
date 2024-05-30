@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftHaus {% block title %}{% endblock title %} </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
+</head>
+<body>
+  <style>
+    body {
+        background: url("{% static 'image/signup.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    .wrapper {
+      min-height: 100%;
+      margin-bottom: -60px; /* Footer height + negative margin */
+      padding-bottom: 60px; /* Footer height */
+  }
+
+  .footer {
+      background-color: #ff5733;
+      color: white;
+      padding: 20px 0;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+  }
+
+  .footer i {
+      font-size: 24px;
+      margin-right: 10px;
+  }
+</style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger back ">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"> GiftHaus</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <form class="d-flex" role="search" method="get" action="{% url 'search' %}">
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" name="q" placeholder="Find Your Items" aria-label="Search"> 
+                <button class="btn btn-outline-light rounded-2 me-5" type="submit"><i class="fa-solid fa-magnifying-glass fa-l"></i></button>
+              </form>
+              <li class="nav-item ">
+                <a class="nav-link active fst-italic" aria-current="page" href="{% url 'index' %}"><i class="fa-solid fa-house fa-l"></i>  HOME</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fst-italic" aria-current="page" href="{% url 'aboutus' %}"><i class="fa-solid fa-user-secret fa-l"></i>  ABOUT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fst-italic" aria-current="page" href="{% url 'all_products' %}">
+                  <i class="fa-solid fa-basket-shopping fa-l"></i>  PRODUCTS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fst-italic" aria-current="page" href="
+                {% url 'cart' %}"> <i class="fas fa-shopping-cart fa-l"></i>  CART</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle fw-bold text" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-id-badge fa-l"></i>
+                  Hiiiiii,{{user.first_name}}
+                </a>
+                <ul class="dropdown-menu bg-danger">
+                  <li><a class="dropdown-item text-white" href="{% url 'profile' %}">Profile</a></li>
+                  <li><a class="dropdown-item text-white" href="{% url 'orders' %}">Orders</a></li>
+                  <li><hr class="dropdown-divider text-white"></li>
+                  <li><a class="dropdown-item text-white" href="{% url 'signout' %}">logout</a></li>
+                </ul>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link active fst-italic" aria-current="page" href="{% url 'signup' %}"> <i class="fa-solid fa-user-plus fa-l"></i>  SIGN UP</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active fst-italic" aria-current="page" href="{% url 'signin' %}"> <i class="fa-solid fa-user-pen fa-l"></i>  SIGN IN</a>
+              </li>
+              
+              {% endif %}
+      
+              
+            </ul>
+            {% comment %} <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>  {% endcomment %}
+          </div>
+              
+           
+      </nav>
+      
+    {% block content %}{% endblock content %}
+
+
+
+
+
+{% comment %} <footer class="bg-danger text-center text-light">
+        &copy; 2023 GiftHaus
+        <h6 class="text-end pe-3 text-decoration-underline">Contact Us</h6>
+        <div class="d-flex-md-4 text-end">
+          <i class="fa-brands fa-youtube  text-white pb-1 pe-2 "></i>
+          <i class="fa-brands fa-twitter  text-white pb-1 pe-2"></i>
+          <i class="fa-brands fa-instagram  text-white pb-1 pe-2"></i>
+          <i class="fa-brands fa-linkedin  text-white pb-1 pe-2"></i>
+        </div>
+</footer> {% endcomment %}
+<br><br><br> <br>
+<footer>
+  <div class="container  ">
+    <div class="row">
+      <div class="col-md-4 text-center"><p class="text-danger"><u>Company</u></p>
+        <p class="text-danger fs-6">About Us <br> Services <br> Career <br> Contact Us</p>
+      </div>
+      <div class="col-md-4 text-center"><p class="text-danger"><u>Policies</u></p>
+        <p class="text-danger fs-6">Privacy Policies <br>Terms of Use <br>Secure Posting <br>Copyright Policies</p>
+      </div>
+      <div class="col-md-4 text-center"><p class="text-danger"><u>Help</u></p>
+      <p class="text-danger fs-6">Content <br>Management <br>Security <br> FAQ</p>
+      </div>
+    </div>
+  </div>
+  
+  <ul class="list-unstyled list-inline text-center">
+    <li class="list-inline-item">
+      <img src="https://d2g9wbak88g7ch.cloudfront.net/staticimages/facebook.png" alt="Facebook" width="32px" height="32px">
+    </li>
+    <li class="list-inline-item">
+      <img src="https://d2g9wbak88g7ch.cloudfront.net/staticimages/linkedin.png" alt="Linkedin" width="32px" height="32px">
+    </li>
+    <li class="list-inline-item">
+      <img src="https://d2g9wbak88g7ch.cloudfront.net/staticimages/youtube.png" alt="Youtube" width="32px" height="32px">
+    </li>
+    <li class="list-inline-item">
+      <img src="https://d2g9wbak88g7ch.cloudfront.net/staticimages/pinterest.png" alt="Pinterest" width="32px" height="32px">
+    </li>
+    <li class="list-inline-item">
+      <img src="https://d2g9wbak88g7ch.cloudfront.net/staticimages/instagram.png" alt="Instagram" width="32px" height="32px">
+    </li>
+  </ul>
+  <p class="text-center text-secondary text-danger"> &copy; 2023 GiftHaus. All Rights Reserved</p>
+</footer>
+
+
+
+
+
+    <script src="{% static 'bootstrap/bootstrap.bundle.min.js' %}"></script>
+    {% block extrajs %}{% endblock extrajs %}
+</body>
+</html>

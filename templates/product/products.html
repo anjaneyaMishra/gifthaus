@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% block title %}
+|| All Products
+{% endblock title %}
+{% block content %}
+<style>
+    
+    .card {
+        border: none;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-top {
+        object-fit: scale-down;
+        max-height: 200px;
+    }
+
+    .card-text {
+        font-size: 16px;
+    }
+
+    .btn-buy {
+        background-color:rgb(255,0,2);
+        color: white;
+        border: none;
+    }
+
+    .btn-buy:hover {
+        background-color: #e23d0d;
+    }
+
+    
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        color: #ff5733;
+        font-size: 18px;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+    .pagination .current-page {
+        font-weight: bold;
+    }
+
+    .pagination a:hover {
+        text-decoration: underline;
+    }
+
+   
+    .no-products-message {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+</style>
+<div class="row">
+    <div class="col-md text-center">
+        {% include 'bar.html' %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md">
+        <div class="container my-3">
+        {% if page_obj %}
+            <div class="row">
+              {% for product in page_obj %}
+                <!-- Display product card here -->
+                <div class="col-md-4 py-3">
+                    <div class="card">
+                        <img src="{{product.image.url}}" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h6 class="card-text">{{product.name}}</h6>
+                            <p class="my-1"><i class="fa-solid fa-indian-rupee-sign"></i> {{product.price}}</p>
+                            <a href="{% url 'product_details' product.id %}" class="btn btn-buy rounded-5 w-100">BUY NOW</a>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1" class="text-danger">&laquo; FIRST</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="text-danger">PREV</a>
+                    {% endif %}
+
+                    <span class="current-page text-danger">
+                        PAGE {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="text-danger">NEXT</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="text-danger">LAST &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            {% else %}
+            <p class="no-products-message text-danger">No Products Available</p>
+        {% endif %}
+        </div>  
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% block title  %}
+||All Products
+{% endblock  %}
+{% block content %}
+<div class="row ">
+    <div class="col-md text-center">
+        {% include 'bar.html' %}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md">
+        <div class="container my-3" >
+            {% if products %}
+            <div class="row">
+                {% for product in products  %}
+                   <div class="col-md-2 py-3">
+                    <div class="card border-0 m-1">
+                        <img src="{{product.image.url}}" class="card-img-top" alt="no-img" style="height: 250px;">
+                        
+                        <div class="card-body p-0">
+                            <h6 class="card-text" style="height: 35px;">{{product.name}}</h6>
+                            <p class="my-1"><i class="fa-solid fa-indian-rupee-sign"></i> {{product.price}}</p>
+                            <a href="{% url 'product_details' product.id %}" class="btn btn-sm btn-danger rounded-5 w-100">BUY NOW</a>
+                        </div>
+                    </div>
+        
+                   </div>
+                {% endfor %}
+            </div>
+        
+            {% else %}
+            <h3 class="text-center my-3">No Products Available</h3>
+            {% endif %}
+        </div>
+    </div>
+</div>    
+    
+{% endblock  %} {% endcomment %}

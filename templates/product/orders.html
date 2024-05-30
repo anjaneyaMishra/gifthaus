@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+|| Order History
+{% endblock title %}
+
+{% block content %}
+<style>
+  
+.product-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.card {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.feedback-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.cancel-button {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.feedback-button, .cancel-button {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-header {
+    background-color: #dc3545;
+    color: #fff;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+}
+
+.close {
+    color: #fff;
+}
+
+
+.modal-body input[type="text"],
+.modal-body textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.modal-footer .btn-primary {
+    background-color: #dc3545;
+    border: none;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #c82333;
+}
+
+</style>
+
+<div class="container my-5">
+  <div class="row">
+      <div class="col-md-10 mx-auto">
+       {% for order in orders %}
+         <div class="card mb-3">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-2 text-center">
+                          <img src="{{ order.product.image.url }}" class="product-image" alt="{{ order.product.title }}">
+                      </div>
+                      <div class="col-md-5">
+                          <h5 class="fw-bold mb-2"><a href="{% url 'product_details' order.product.id %}">{{ order.product.title }}</a></h5>
+                          <p class="mb-2"><strong>Quantity:</strong> {{ order.quantity }}</p>
+                          <p class="mb-2"><strong>Price:</strong> {{ order.price }}</p>
+                      </div>
+                      <div class="col-md-5">
+                          <p class="mb-2"><strong>Delivery Address:</strong> {{ order.address }}</p>
+                          <p class="mb-2"><strong>Status:</strong> {{ order.status }}</p>
+                          {% comment %} <div>
+                              {% if order.status == "Delivered" %}
+                                  <p class="mb-2"><strong>Delivered on:</strong> {{ order.updated_at }}</p>
+                                  <button class="btn btn-sm btn-outline-danger rounded-0 d-block feedback-button" data-toggle="modal" data-target="#feedbackModal" data-product-id="{{ order.product.id }}" data-product-title="{{ order.product.title }}">Feedback</button>
+                              {% else %}
+                                  <p class="mb-2"><strong>Ordered on:</strong> {{ order.created_at }}</p>
+                                  
+                                  <button class="btn btn-sm  rounded-0 d-block cancel-button">Cancel Order</button>
+                              {% endif %}
+                          </div> {% endcomment %}
+                          <div>
+                            {% if order.status == "Cancelled" %}
+                                <p class="mb-1 text-danger fw-bold">ORDER IS CANCELLED</p>
+                            {% else %}
+                                <p class="mb-2">
+                                    {% if order.status == "Delivered" %}
+                                        <strong>Delivered on:</strong> {{ order.updated_at }}
+                                    {% else %}
+                                        <strong>Ordered on:</strong> {{ order.created_at }}
+                                    {% endif %}
+                                </p>
+                        
+                                {% if order.status == "Delivered" %}
+                                    <button class="btn btn-sm btn-outline-danger rounded-0 d-block feedback-button" data-toggle="modal" data-target="#feedbackModal" data-product-id="{{ order.product.id }}" data-product-title="{{ order.product.title }}">Feedback</button>
+                                {% else %}
+                                    <a href="{% url 'cancel_order' order.id %}" class="btn btn-sm btn-outline-danger rounded-0 d-block">Cancel Order</a>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+       {% endfor %}
+      </div>
+  </div>
+</div>
+
+
+{% comment %} <div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Feedback for <span class="text-primary" id="productTitle"></span></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'add_feedback' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" id="productId">
+            <div class="rate">
+                <input type="radio" id="star5" name="rating" value="5" required>
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4" required>
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3" required>
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2" required>
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1" required>
+                <label for="star1" title="text">1 star</label>
+            </div>
+            <textarea name="comment" class="form-control rounded-0 my-3" placeholder="Say Something" rows="5"></textarea>
+            <input type="submit" class="btn btn-primary rounded-0" value="Post">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+
+
+{% endblock content %}
+{% block extrajs %}
+<script>
+
+    function setProductDetails(e){
+        let productId=e.target.dataset.productId
+        let productTitle=e.target.dataset.productTitle
+        document.getElementById("productTitle").innerHTML=productTitle
+        document.getElementById("productId").value=productId
+
+    }
+</script>
+
+{% endblock extrajs %}
